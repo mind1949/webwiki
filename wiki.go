@@ -3,15 +3,15 @@ package main
 import (
 	"html/template"
 	"io/ioutil"
-	"net/http"
 	"log"
+	"net/http"
 )
 
 //== models ==//
 
 type Page struct {
 	Title string
-	Body []byte
+	Body  []byte
 }
 
 func (p *Page) save() error {
@@ -28,7 +28,6 @@ func loadPage(title string) (*Page, error) {
 	}
 	return &Page{Title: title, Body: body}, nil
 }
-
 
 //== controllers ==//
 
@@ -80,7 +79,6 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	}
 }
 
-
 //== routes ==//
 
 func main() {
@@ -89,4 +87,3 @@ func main() {
 	http.HandleFunc("/save/", saveHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
-
